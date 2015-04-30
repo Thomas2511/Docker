@@ -1,7 +1,7 @@
 #!/bin/bash
 
 docker build -t hello/world:v42 .
-docker run -i -P -h 42born2code -t hello/world:v42
+docker run --name mission01 -i -P -h 42born2code -t hello/world:v42
 
 # boot2docker ip (ex : -> 192.168.59.103).
 # docker ps (ex : -> 37659).

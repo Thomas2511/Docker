@@ -16,14 +16,16 @@ RUN rm -rf /var/lib/apt/lists/*
 # Set nginx as one of the default services.
 RUN update-rc.d nginx defaults
 
-# Creates a new group "nginxuser" and adds the user "tdieumeg" to it.
+# In the debian image : adds the user "tdieumeg",
+# sets default shell to bash,
+# creates home directory "/home/tdieumeg".
 RUN useradd -r -m -s /bin/bash tdieumeg
 
 # Copies the directory "src/" from the working directory to :
 # "/usr/share/nginx/www/".
 COPY src "/usr/share/nginx/www/"
 
-# Starting nginx as if through comand line.
+# Starting nginx as if through command line and changes the user to tdieumeg.
 ENTRYPOINT service nginx start; su tdieumeg
 
 # Listen on the ports 80 and 443. (80 = http, 443 = https)
